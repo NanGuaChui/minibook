@@ -1,6 +1,6 @@
 {
   "name": "minibook",
-  "displayName": "MiniBook",
+  "displayName": "minibook",
   "description": "actionbar mini book",
   "version": "0.0.1",
   "engines": {
@@ -11,14 +11,6 @@
   ],
   "activationEvents": [],
   "main": "./dist/extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "minibook.helloWorld",
-        "title": "Hello World"
-      }
-    ]
-  },
   "scripts": {
     "vscode:prepublish": "yarn run package",
     "compile": "webpack",
@@ -28,20 +20,97 @@
     "watch-tests": "tsc -p . -w --outDir out",
     "pretest": "yarn run compile-tests && yarn run compile && yarn run lint",
     "lint": "eslint src",
-    "test": "vscode-test"
+    "test": "vscode-test",
+    "vsp": "vsce package",
+    "vspub": "vsce publish"
   },
   "devDependencies": {
-    "@types/vscode": "^1.95.0",
     "@types/mocha": "^10.0.9",
     "@types/node": "20.x",
+    "@types/vscode": "^1.95.0",
     "@typescript-eslint/eslint-plugin": "^8.10.0",
     "@typescript-eslint/parser": "^8.7.0",
-    "eslint": "^9.13.0",
-    "typescript": "^5.6.3",
-    "ts-loader": "^9.5.1",
-    "webpack": "^5.95.0",
-    "webpack-cli": "^5.1.4",
     "@vscode/test-cli": "^0.0.10",
-    "@vscode/test-electron": "^2.4.1"
+    "@vscode/test-electron": "^2.4.1",
+    "@vscode/vsce": "^3.2.1",
+    "eslint": "^9.13.0",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.6.3",
+    "webpack": "^5.95.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "contributes": {
+    "configuration": {
+      "title": "Mini-Book",
+      "type": "object",
+      "properties": {
+        "minibook.currChapterNumber": {
+          "type": "number",
+          "default": 1,
+          "description": "当前章节页数(支持跳转) & Pages of Current Novels (Support jumping)"
+        },
+        "minibook.currPageNumber": {
+          "type": "number",
+          "default": 1,
+          "description": "当前小说页数(支持跳转) & Pages of Current Novels (Support jumping)"
+        },
+        "minibook.pageSize": {
+          "type": "number",
+          "default": 50,
+          "description": "每页文字数量 & Number of text per page"
+        },
+        "minibook.filePath": {
+          "type": "string",
+          "default": "",
+          "description": "TXT格式小说绝对路径 & Absolute Path of TXT Format Novels"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "minibook.displayCode",
+        "title": "minibook"
+      },
+      {
+        "command": "minibook.reload",
+        "title": "minibook"
+      },
+      {
+        "command": "minibook.getPreviousPage",
+        "title": "minibook.PreviousBook"
+      },
+      {
+        "command": "minibook.getNextPage",
+        "title": "minibook.NextBook"
+      },
+      {
+        "command": "minibook.getJumpingPage",
+        "title": "minibook.JumpingBook"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "minibook.getPreviousPage",
+        "key": "alt+f3",
+        "mac": "cmd+/",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "minibook.getNextPage",
+        "key": "alt+f2",
+        "mac": "cmd+.",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "minibook.getJumpingPage",
+        "key": "ctrl+alt+;",
+        "mac": "cmd+;"
+      },
+      {
+        "command": "minibook.displayCode",
+        "key": "ctrl+m",
+        "mac": "cmd+m"
+      }
+    ]
   }
 }
