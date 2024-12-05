@@ -2,7 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 import Book from './bookUtil';
-import MiniBookViewProvider from './MiniBookView';
+import MiniBookViewProvider from './activeBar/MiniBookView';
 
 let bookInstance: Book;
 const getbookInstance = () => {

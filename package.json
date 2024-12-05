@@ -114,14 +114,12 @@
       {
         "command": "minibook.getPreviousPage",
         "key": "alt+f3",
-        "mac": "cmd+/",
-        "when": "editorTextFocus"
+        "mac": "cmd+/"
       },
       {
         "command": "minibook.getNextPage",
         "key": "alt+f2",
-        "mac": "cmd+.",
-        "when": "editorTextFocus"
+        "mac": "cmd+."
       },
       {
         "command": "minibook.getJumpingPage",

@@ -48,12 +48,13 @@ export default class MiniBookViewProvider implements vscode.WebviewViewProvider 
 
   private _getHtmlForWebview(webview: vscode.Webview) {
     // Get the local path to main script run in the webview, then convert it to a uri we can use in the webview.
-    const scriptUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'src/media', 'main.js'));
+    const scriptUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'src/activeBar/media', 'main.js'));
 
     // Do the same for the stylesheet.
-    const styleResetUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'src/media', 'reset.css'));
-    const styleVSCodeUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'src/media', 'vscode.css'));
-    const styleMainUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'src/media', 'main.css'));
+    const styleResetUri = webview.asWebviewUri(
+      vscode.Uri.joinPath(this._extensionUri, 'src/assets/media', 'reset.css')
+    );
+    const styleMainUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'src/assets/media', 'main.css'));
 
     // Use a nonce to only allow a specific script to be run.
     const nonce = getNonce();
@@ -73,7 +74,6 @@ export default class MiniBookViewProvider implements vscode.WebviewViewProvider 
 				<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 				<link href="${styleResetUri}" rel="stylesheet">
-				<link href="${styleVSCodeUri}" rel="stylesheet">
 				<link href="${styleMainUri}" rel="stylesheet">
 
 				<title>Cat Colors</title>
@@ -81,7 +81,9 @@ export default class MiniBookViewProvider implements vscode.WebviewViewProvider 
 			<body>
 				<ul class="color-list">
 				</ul>
-				<button class="add-color-button">Add Color</button>
+        <div>
+            <button class="add-color-button">Add Color</button>
+        </div>
 
 				<script nonce="${nonce}" src="${scriptUri}"></script>
 			</body>
