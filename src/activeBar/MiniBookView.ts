@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 
 export default class MiniBookViewProvider implements vscode.WebviewViewProvider {
-  public static readonly viewType = 'minibook.view';
+  public static readonly viewType = 'miniBookView';
 
   private _view?: vscode.WebviewView;
 

@@ -106,6 +106,7 @@ export default class Book {
     const { start, end } = this.getStartEnd();
     const currentString = this.chatper.substring(start, end);
 
+    // $(sync)
     return `(${this.currChapterNumber + 1})${currentString} ${page_info}`;
   }
 

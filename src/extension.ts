@@ -3,6 +3,7 @@
 import * as vscode from 'vscode';
 import Book from './bookUtil';
 import MiniBookViewProvider from './activeBar/MiniBookView';
+import { MyTreeDataProvider } from './activeBar/MiniBookTreeView';
 
 let bookInstance: Book;
 const getbookInstance = () => {
@@ -24,7 +25,7 @@ export function activate(context: vscode.ExtensionContext) {
   // The commandId parameter must match the command field in package.json
 
   // 创建状态栏项
-  const statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 1);
+  const statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 0);
   statusBarItem.text = 'Mini Book';
   statusBarItem.tooltip = 'Mini Book';
   statusBarItem.command = 'minibook.displayCode';
@@ -60,8 +61,11 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(reload);
 
   // 注册活动栏视图
-  const provider = new MiniBookViewProvider(context.extensionUri);
-  context.subscriptions.push(vscode.window.registerWebviewViewProvider(MiniBookViewProvider.viewType, provider));
+  // const provider = new MiniBookViewProvider(context.extensionUri);
+  // context.subscriptions.push(vscode.window.registerWebviewViewProvider(MiniBookViewProvider.viewType, provider));
+
+  // const myTreeDataProvider = new MyTreeDataProvider();
+  // vscode.window.registerTreeDataProvider('miniBookView', myTreeDataProvider);
 }
 
 // This method is called when your extension is deactivated

@@ -40,24 +40,6 @@
     "webpack-cli": "^5.1.4"
   },
   "contributes": {
-    "viewsContainers": {
-      "activitybar": [
-        {
-          "id": "minibook",
-          "title": "Mini Book",
-          "icon": "resources/send_icon.png"
-        }
-      ]
-    },
-    "views": {
-      "minibook": [
-        {
-          "type": "webview",
-          "id": "minibook.view",
-          "name": "Mini Book View 1"
-        }
-      ]
-    },
     "configuration": {
       "title": "Mini-Book",
       "type": "object",
